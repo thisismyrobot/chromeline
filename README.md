@@ -35,6 +35,8 @@ Need to know your input sound card name for the config:
 
     pactl list
 
+Then update the config.ini with it (and the other settings you'll need).
+
 ## Starting chromeline
 
 For now, this will be a daemon later:
@@ -45,3 +47,5 @@ For now, this will be a daemon later:
 
     pip install -r requirements.txt
     python chromeline.py
+
+As soon as the desired Chromecast is detected, line in will be streamed to it.
