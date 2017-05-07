@@ -6,6 +6,7 @@ Live stream line in on a Pi to a Chromecast.
 
 First:
 
+    chmod 755 install_prerequisites.sh
     ./install_prerequisites.sh
 
 Then hook up some magic:
@@ -29,7 +30,7 @@ Then:
 
     sudo /etc/init.d/icecast2 restart
 
-## Input device name
+### Input device name
 
 Need to know your input sound card name for the config:
 
@@ -49,3 +50,7 @@ For now, this will be a daemon later:
     python chromeline.py
 
 As soon as the desired Chromecast is detected, line in will be streamed to it.
+
+For auto-starting for now, I am doing (in crontab):
+
+    @reboot cd /home/pi/chromeline ; venv/bin/python chromeline.py
