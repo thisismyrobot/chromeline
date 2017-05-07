@@ -1,20 +1,22 @@
-# Live stream line in on a Pi to a Chromecast
+# chromeline
+
+Live stream line in on a Pi to a Chromecast.
 
 ## Setup on Pi
 
-Need GStreamer and icecast2 and pulseaudio
+First:
 
-    sudo apt-get install pulseaudio gstreamer1.0-tools icecast2 gstreamer1.0-pulseaudio
+    ./install_prerequisites.sh
 
 Then hook up some magic:
 
     gconftool-2 -t string --set /system/gstreamer/0.10/default/audiosrc pulsesrc
 
-Need to know your input sound card name for the config:
+Allow scripts to execute:
 
-    pactl list
+    chmod 755 push_to_icecast.sh
 
-## Icecast configuration
+### Icecast configuration
 
 Edit /etc/icecast2/icecast.xml
 
@@ -26,3 +28,20 @@ Change:
 Then:
 
     sudo /etc/init.d/icecast2 restart
+
+## Input device name
+
+Need to know your input sound card name for the config:
+
+    pactl list
+
+## Starting chromeline
+
+For now, this will be a daemon later:
+
+    sudo pip install virtualenv
+    virtualenv venv
+    source venv/bin/activate
+
+    pip install -r requirements.txt
+    python chromeline.py
